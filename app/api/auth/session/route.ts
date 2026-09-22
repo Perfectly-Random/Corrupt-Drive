@@ -1,0 +1,1 @@
+import {NextResponse} from "next/server";import {currentUser,clearSession} from "@/lib/auth";export async function GET(){return NextResponse.json({user:await currentUser()})}export async function DELETE(){await clearSession();return NextResponse.json({ok:true})}
