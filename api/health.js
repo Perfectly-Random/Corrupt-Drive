@@ -1,3 +1,3 @@
 'use strict';
-const gateway=require('../lib/public-gateway');
-module.exports=async(req,res)=>{res.setHeader('Cache-Control','no-store');try{const r=await fetch('https://ep-divine-rice-adqxt183.apirest.c-2.us-east-1.aws.neon.tech/corrupt_drive/rest/v1/rpc/rpc',{method:'POST',headers:{'Content-Type':'application/json','Content-Profile':'game_api','Accept-Profile':'game_api','Authorization':'Bearer '+gateway},body:JSON.stringify({action:'health',payload:{}}),signal:AbortSignal.timeout(15000)});res.statusCode=r.ok?200:503;res.json({ready:r.ok,status:r.status,detail:await r.json()});}catch(e){res.statusCode=503;res.json({ready:false,error:'Connection unavailable'});}};
+const handler=require('./account');
+module.exports=(req,res)=>{if(req.method!=='GET'){res.statusCode=405;return res.end();}req.query={health:'1'};return handler(req,res);};

@@ -1,0 +1,28 @@
+/* Authored fiction. Four distinct recoverable fragments per artifact. */
+const Archive = [
+ ['platform','platform_09.raw','image','DAMAGED','04 OCT / 06:42',2097152,['The platform before sunrise. Two cups on a bench.','The departure board is switched off.','A small figure is reflected in the ticket-office window.','On the back: Same place. Seven minutes early.']],
+ ['note','leave_a_light.txt','text','COMMON','04 OCT / 23:17',32768,['M —','The station clock is still seven minutes slow.','I left a light on in the room upstairs.','No need to reply. Just get home.']],
+ ['roomtone','roomtone_04.pcm','audio','DAMAGED','04 OCT / 23:41',1920000,['Four electronic notes, then a pause.','A second pattern answers, very quietly.','The two parts overlap without quite meeting.','Previous filename: welcome_home.pcm']],
+ ['transfer','last_transfer.log','text','SYSTEM','05 OCT / 00:03',65536,['00:03:11 background copy started.','00:03:12 destination unavailable.','00:03:15 keep original: TRUE.','00:03:16 do not format this drive.']],
+ ['ticket','ticket_scan.raw','image','COMMON','03 OCT / 17:08',1048576,['An old ticket, folded twice.','Destination: NORTH TERMINAL.','Passenger count: 02.','Return journey: OPEN.']],
+ ['draft','unsent_02.txt','text','DELETED','05 OCT / 00:04',32768,['I tried calling.','Not because anything is wrong.','I just wanted you to hear it working.','The little program we made still remembers.']],
+ ['signal','signal_07.pcm','audio','ANOMALY','TIME UNAVAILABLE',2646000,['A clean tone emerges from the static.','The interval matches the first recording.','The answer comes one octave higher.','Someone saved both tracks, separately.']],
+ ['readme','for_the_finder.txt','text','ANOMALY','TIME UNAVAILABLE',65536,['You are not the first recovery process.','The others restored the operating system.','But this is not an operating-system backup.','These are the things I did not want to forget.']],
+ ['clock','clock_service.log','text','SYSTEM','04 OCT / 06:49',32768,['Time synchronisation request received.','Local offset: minus 420 seconds.','Correction declined by user M.','Reason: He always arrives early.']],
+ ['garden','garden_window.raw','image','COMMON','12 JUN / 17:02',3145728,['A bright rectangle beyond a dark room.','Three pots on the windowsill; one empty.','A paper bird hangs from the window catch.','Someone has written: try again in spring.']],
+ ['recipe','sunday_pancakes.txt','text','COMMON','12 JUN / 08:11',32768,['Two eggs. One cup of flour.','Less salt than last time.','M says the uneven ones taste better.','Do not optimise the uneven ones.']],
+ ['calibration','calibration_02.pcm','audio','SYSTEM','28 SEP / 21:36',1536000,['A metronome clicks four times.','The last click is late.','A laugh breaks through the room noise.','Leave that in. It sounds like us.']],
+ ['schedule','departure_calendar.txt','text','DAMAGED','03 OCT / 12:06',65536,['FRIDAY: collect repaired recorder.','SATURDAY: test the upstairs speaker.','SUNDAY: train at 06:49.','Reminder created for 06:42.']],
+ ['desk','workbench.raw','image','DAMAGED','28 SEP / 22:01',4194304,['A recorder, a screwdriver, two mugs.','The smaller mug is full of loose screws.','A handwritten label: ECHO, version 07.','On the monitor: recovery is not replacement.']],
+ ['debug','echo_07.debug','text','SYSTEM','05 OCT / 00:00',131072,['Task: reconstruct missing blocks.','Instruction: keep all originals.','Exception: no perfect copy exists.','Retry policy: be patient.']],
+ ['photoindex','contact_sheet.raw','image','DELETED','TIME UNAVAILABLE',2097152,['Twelve almost identical photographs.','The first eleven are out of focus.','In the twelfth, someone has turned around.','This one was marked KEEP.']],
+ ['rain','rain_at_home.pcm','audio','COMMON','18 AUG / 16:10',2880000,['Rain on a metal window ledge.','A chair scrapes across the floor.','Someone hums the first half of the tune.','The second half comes from another room.']],
+ ['checklist','recovery_rules.txt','text','SYSTEM','05 OCT / 00:02',65536,['One: repair the path before the file.','Two: save what you cannot replace.','Three: a silence is still part of a recording.','Four: when finished, leave the light on.']],
+ ['envelope','envelope_scan.raw','image','DELETED','04 OCT / 19:24',3145728,['An envelope without a stamp.','Address: The room upstairs.','Inside is a small paper bird.','No letter.']],
+ ['duplicate','duplicate_audit.log','text','ANOMALY','05 OCT / 00:05',131072,['Two audio files share the same checksum.','Playback differs only in the final second.','The checksum record was entered by hand.','Note: they are not duplicates.']],
+ ['answer','answer_01.pcm','audio','DELETED','04 OCT / 23:42',1764000,['Three notes answer the familiar four.','A pause long enough to seem unfinished.','A fourth note arrives softly.','The timestamp is one minute after roomtone_04.']],
+ ['manifest','archive_manifest.txt','text','SYSTEM','05 OCT / 00:06',131072,['The system backup completed normally.','User archive skipped: destination unavailable.','A recovery process was left running.','Process owner: Maya.']],
+ ['light','upstairs_light.raw','image','ANOMALY','05 OCT / 00:07',4194304,['The house seen from the end of the road.','Every window is dark except one.','A paper bird is visible against the glass.','The photograph was not taken from inside.']],
+ ['closing','when_you_are_done.txt','text','ANOMALY','TIME UNAVAILABLE',32768,['You can stop looking for a perfect recording.','The missing seconds are not the important part.','Save the two tracks together.','Then go home.']]
+].map(([id,name,type,rarity,stamp,bytes,lines])=>({id,name,type,rarity,stamp,bytes,lines}));
+if(typeof module!=='undefined')module.exports=Archive;

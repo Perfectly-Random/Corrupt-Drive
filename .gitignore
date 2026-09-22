@@ -1,3 +1,5 @@
 .vercel/
 .env*
 node_modules/
+tests/screenshots/
+public-gateway-token.txt
