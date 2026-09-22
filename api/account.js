@@ -1,5 +1,6 @@
 'use strict';
-// Same-origin gateway: the Data API role can execute one RPC, not read private tables.
+// Only a publishable RPC-role credential is shipped; no privileged database secret.
+const gateway=require('../lib/public-gateway');
 const ENDPOINT='https://ep-divine-rice-adqxt183.apirest.c-2.us-east-1.aws.neon.tech/corrupt_drive/rest/v1/rpc/rpc';
 const ACTIONS=new Set(['register','login','recover','session','load','save','logout']);
 module.exports=async function handler(req,res){
@@ -22,7 +23,7 @@ module.exports=async function handler(req,res){
   const payload=['register','login','recover'].includes(action)?{username:body.username,password:body.password,recovery:body.recovery}:{token};
   if(action==='save'){payload.state=body.state;payload.revision=body.revision;}
   if(!health&&!['register','login','recover'].includes(action)&&!token)return send(401,{ok:false,error:'Please sign in.'});
-  const upstream=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Content-Profile':'game_api','Accept-Profile':'game_api'},body:JSON.stringify({action,payload}),signal:AbortSignal.timeout(18000)});
+  const upstream=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Content-Profile':'game_api','Accept-Profile':'game_api','Authorization':'Bearer '+gateway},body:JSON.stringify({action,payload}),signal:AbortSignal.timeout(18000)});
   if(!upstream.ok)return send(503,{ok:false,error:'Cloud storage is unavailable. Keep this tab open; your local backup is retained.'});
   const data=await upstream.json();if(!data||typeof data!=='object'||typeof data.ok!=='boolean')return send(503,{ok:false,error:'Cloud storage returned an invalid response.'});
   if(data.token){if(!/^[a-f0-9]{64}$/.test(data.token))return send(503,{ok:false,error:'Session could not be created.'});res.setHeader('Set-Cookie',`${name}=${data.token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=2592000${secure?'; Secure':''}`);delete data.token;}
